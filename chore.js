@@ -25,8 +25,7 @@
 		}
 	@end-include
 */
-
-chore = function chore( command, callback ){
+var chore = function chore( command, callback ){
 	/*:
 		@meta-configuration:
 			{
@@ -35,19 +34,21 @@ chore = function chore( command, callback ){
 			}
 		@end-meta-configuration
 	*/
-	var task = childprocess.exec( command );
-	var error = "";
-	task.stderr.on( "data",
-		function( data ){
-			error += data.toString( ).replace( /^\s+|\s+$/g, "" );
-		} );
-	task.on( "close",
-		function( ){
-			if( error ){
-				callback( error, false );
-			}else{
-				callback( null, true );
+	
+	var task = childprocess.exec( command,
+		function onResult( error, output, errorOutput ){
+			if( typeof errorOutput != undefined ||
+				errorOutput !== null )
+			{
+				errorOutput = errorOutput.toString( ).trim( );
 			}
+
+			if( error || errorOutput ){
+				error = error || errorOutput && new Error( errorOutput );
+			}
+
+			callback( error, !!error );
 		} );
 };
 
+var childprocess = require( "child_process" );
