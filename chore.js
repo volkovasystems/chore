@@ -1,22 +1,18 @@
 /*:
 	@module-configuration:
 		{
+		    "packageName": "chore",
 			"fileName": "chore.js",
 			"moduleName": "chore",
 			"authorName": "Richeve S. Bebedor",
+			"authorEMail": "richeve.bebedor@gmail.com",
+			"repository": "git@github.com:volkovasystems/chore.git",
 			"isGlobal": true
 		}
 	@end-module-configuration
 
 	@module-documentation:
-		This chore function is a simple command execution engine
-			with the following features:
-			1. Execute command.
-			2. Return on error.
-			3. Do not listen to output stream.
 
-		This is a global function and I hope that the word "chore",
-			will not be used anywhere in the vscode environment.
 	@end-module-documentation
 
 	@include:
@@ -34,7 +30,7 @@ var chore = function chore( command, callback ){
 			}
 		@end-meta-configuration
 	*/
-	
+
 	var task = childprocess.exec( command,
 		function onResult( error, output, errorOutput ){
 			if( typeof errorOutput != undefined ||
@@ -52,3 +48,4 @@ var chore = function chore( command, callback ){
 };
 
 var childprocess = require( "child_process" );
+( module || { } ).exports = chore;
