@@ -1,7 +1,7 @@
 /*:
 	@module-configuration:
 		{
-		    "packageName": "chore",
+			"packageName": "chore",
 			"fileName": "chore.js",
 			"moduleName": "chore",
 			"authorName": "Richeve S. Bebedor",
