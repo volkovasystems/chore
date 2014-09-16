@@ -31,6 +31,7 @@
 			"authorName": "Richeve S. Bebedor",
 			"authorEMail": "richeve.bebedor@gmail.com",
 			"repository": "git@github.com:volkovasystems/chore.git",
+			"testCase": "chore-test.js",
 			"isGlobal": true
 		}
 	@end-module-configuration
@@ -57,7 +58,7 @@ var chore = function chore( command, callback ){
 
 	var task = childprocess.exec( command,
 		function onResult( error, output, errorOutput ){
-			if( typeof errorOutput != undefined ||
+			if( typeof errorOutput != "undefined" ||
 				errorOutput !== null )
 			{
 				errorOutput = errorOutput.toString( ).trim( );
