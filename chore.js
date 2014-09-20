@@ -68,7 +68,7 @@ var chore = function chore( command, callback ){
 				error = error || errorOutput && new Error( errorOutput );
 			}
 
-			callback( error, !!error );
+			callback( error, !!!error );
 		} );
 };
 
